@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "index";
+}
+
+<h2>index</h2>
+<script src="~/Scripts/jquery-1.12.1.min.js"></script>
+<script src="~/Scripts/qfUpload.js"></script>
+<input type="file" id="file" />
+<input type="submit" id="submit" value="提交" />
+<script>
+    $("#submit").bind('click', function () {
+
+        $("#file").qfUpload({
+            size: 2 * 1024,
+            getTokenUrl: '../testUploader/GetToken',
+            upFileUrl: '../testUploader/UploadFile',
+            ready: function (data) {
+                console.log(data);
+            },
+            success: function () {
+                console.log($("#file").qfUploadInfo());
+            }
+        });
+    });
+</script>
